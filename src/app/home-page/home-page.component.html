@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-header">
+    <div class="form-group">
+      <input (keyup)="addItem($event)" type="text" class="form-control" placeholder="items">
+    </div>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <!--
+    <li [ngStyle]="{'background-color':item.checked === true ? 'lightgrey' : 'white' }" *ngFor="let item of todoArray; let itemIndex = index" class="list-group-item d-flex justify-content-between">
+
+     -->
+    <li [class.done]="item.checked" *ngFor="let item of todoArray; let itemIndex = index" class="list-group-item d-flex justify-content-between">
+
+      <app-checkbox [label]="item.title" [(checked)]="item.checked"></app-checkbox>
+
+      <button (click)="suppItem(itemIndex)" class="btn btn-outline-danger btn-sm">
+        x
+      </button>
+    </li>
+
+
+  </ul>
+
+  <div class="card-footer d-flex justify-content-between">
+
+    <app-array-size [array]="todoArray"></app-array-size>
+
+    <button *ngIf="atLeastOneChecked" (click)="suppAll()" class="btn btn-sm btn-link">
+      Clear completed
+    </button>
+  </div>
+</div>
